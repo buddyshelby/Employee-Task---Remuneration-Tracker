@@ -4,9 +4,10 @@ This application allows employees to record their completed tasks and automatica
 
 ---
 
-## 📊 Architecture Overview
+## Architecture Overview
 
 ### System Components
+
 1. **Frontend (Next.js)**
    - React-based UI with pages for:
      - Task listing
@@ -22,10 +23,15 @@ This application allows employees to record their completed tasks and automatica
    - Request validation
 
 3. **Database**
-   - MySQL/PostgreSQL
+   - MySQL
    - Tables:
-     - `tasks` (core table)
-     - `employees` (optional for user auth)
+     - `employee_name`
+     - `task_description`
+     - `date`
+     - `hours_spent`
+     - `hourly_rate`
+     - `additional_charges`
+     - `total_remuneration`
 
 ### Detailed Data Flow
 
@@ -51,3 +57,7 @@ graph TD
 
 5. **JSON Response**  
    Laravel returns results to Next.js
+
+---
+
+## Setup & Deploy:
