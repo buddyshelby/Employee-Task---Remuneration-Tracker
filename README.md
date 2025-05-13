@@ -28,6 +28,7 @@ This application allows employees to record their completed tasks and automatica
      - `employees` (optional for user auth)
 
 ### Detailed Data Flow
+
 ```mermaid
 graph TD
     A[API Request] --> B[Validate Data]
@@ -35,3 +36,18 @@ graph TD
     C --> D[Database Operation]
     D --> E[JSON Response]
 ```
+
+1. **API Request**  
+   Next.js sends HTTP request to Laravel
+
+2. **Validate Data**  
+   Laravel checks input format and values
+
+3. **Calculate Remuneration**  
+   Prorated calculation happens here
+
+4. **Database Operation**  
+   Records are saved/updated
+
+5. **JSON Response**  
+   Laravel returns results to Next.js
