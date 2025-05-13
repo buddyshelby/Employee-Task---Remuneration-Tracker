@@ -38,3 +38,4 @@ graph LR
     DB -->|6. Return Records| BE
     BE -->|7. JSON Response| FE
     FE -->|8. Display Results| UI
+```
