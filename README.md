@@ -29,13 +29,9 @@ This application allows employees to record their completed tasks and automatica
 
 ### Detailed Data Flow
 ```mermaid
-graph LR
-    UI[User Interface] -->|1. Submit Form| FE[Next.js Frontend]
-    FE -->|2. API Request| BE[Laravel Backend]
-    BE -->|3. Validate Data| BE
-    BE -->|4. Calculate Remuneration| BE
-    BE -->|5. Query Data| DB[(Database)]
-    DB -->|6. Return Records| BE
-    BE -->|7. JSON Response| FE
-    FE -->|8. Display Results| UI
+graph TD
+    A[API Request] --> B[Validate Data]
+    B --> C[Calculate Remuneration]
+    C --> D[Database Operation]
+    D --> E[JSON Response]
 ```
