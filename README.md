@@ -83,38 +83,41 @@ NextJS:
 
 Download repository
 
-Buka frontend directory dan install depedensi yang dibutuhkan menggunakan npm
+1. Buka frontend directory dan install depedensi yang dibutuhkan menggunakan npm
 
 `cd frontend`
 
 `npm i`
 
 
-Buka backend directory dan install depedensi PHP yang dibutuhkan menggunakan composer
+2. Buka backend directory dan install depedensi PHP yang dibutuhkan menggunakan composer
 
 `cd ../backend`
 
 `composer install`
 
+3. Rename .env.example menjadi .env
 
-Generate APP_KEY untuk aplikasi baru Laravel. ini akan setup env file juga nantinya.
+4. Generate APP_KEY untuk aplikasi baru Laravel. ini akan setup env file juga nantinya.
 
-`artisan key:generate`
+`php artisan key:generate`
 
 
-Migrasi databasenya untuk membuat table yang diperlukan.
+5. Migrasi databasenya untuk membuat table yang diperlukan.
 
 `php artisan migrate`
 
 
-jalankan frontend secara lokal
+## Load Data Dummy (tasks.sql) (jika dibutuhkan) ke dalam table yang baru saja di migrate
 
-`npm run dev`
-
-
-jalankan backend secara lokal
+6. jalankan backend secara lokal
 
 `php artisan serve`
+
+
+7. jalankan frontend secara lokal
+
+`npm run dev`
 
 
 ## Tantangan dan solusi

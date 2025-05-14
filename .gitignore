@@ -19,7 +19,7 @@ _ide_helper_models.php
 # Next.js
 /frontend/.next/
 /frontend/node_modules/
-/frontend/.env*
+/frontend/.env
 
 # System files
 .DS_Store
