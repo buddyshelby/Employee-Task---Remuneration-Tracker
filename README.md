@@ -60,20 +60,32 @@ Download repository
 
 Navigate to the frontend directory and install the necessary dependencies using npm
 `cd frontend`
+
 `npm i`
 
+
 Navigate to the backend (Laravel) directory and install the necessary PHP dependencies using composer
+
 `cd ../backend`
+
 `composer install`
 
+
 Generate a new application encryption key for Laravel. This will set the APP_KEY in your .env file
+
 `artisan key:generate`
 
+
 Migrate the database to create the necessary tables. Make sure the database connection is properly set up in your .env file before running this.
+
 `php artisan migrate`
 
+
 Start frontend locally
+
 `npm run dev`
 
+
 Start backend local
+
 `php artisan serve`
