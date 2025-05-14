@@ -20,16 +20,13 @@ export default function Home() {
   useEffect(() => {
     api.get<Task[]>('/tasks')
       .then(res => {
-        setTasks(res.data)
+        setTasks(
+          res.data.sort((a, b) => a.task_description.localeCompare(b.task_description))
+        );
         setModifiedDataTask(res.data)
       })
       .catch(err => console.error('Failed to fetch tasks:', err));
   }, []);
-
-  useEffect(() => {
-    console.log(dataEdit);
-    
-  }, [modifiedDataTasks])
 
   return (
     <div className="w-screen h-screen font-[family-name:var(--font-geist-sans)]">

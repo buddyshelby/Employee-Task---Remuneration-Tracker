@@ -88,7 +88,7 @@ const FormEdit = ({ dataEdit, setDataEdit, editForm, setEditForm }: InterfaceFor
                 <InputNumber required onChange={setHoursSpent} name='hours_spent' value={hoursSpent} />
                 <InputNumber required onChange={setHourlyRate} name='hourly_rate' value={hourlyRate} />
                 <InputNumber onChange={setAdditionalCharges} name='additional_charges' value={additionalCharges} />
-                <ButtonSubmit>Submit</ButtonSubmit>
+                <ButtonSubmit>Save</ButtonSubmit>
             </form>
         </div>
     )

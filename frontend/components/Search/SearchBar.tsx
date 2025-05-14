@@ -6,7 +6,10 @@ const SearchBar = ({ tasks, setTasks }: InterfaceSearchBar) => {
     const [search, setSearch] = useState('')
 
     useEffect(() => {
-        setTasks(tasks.filter(item => item.employee_name.toLowerCase().includes(search.toLowerCase())))
+        setTasks(
+            tasks.filter(item => item.employee_name.toLowerCase().includes(search.toLowerCase()))
+            .sort((a, b) => a.task_description.localeCompare(b.task_description))
+        )
     }, [search])
 
     return (

@@ -37,12 +37,14 @@ export const InputNumber = ({ name, placeholder, value, onChange, required }: Ui
 export const InputDate = ({ selected, disabled, onChange }: UiInputDate) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     useEffect(() => {
-        if (selected) {
+        if (selected)
             onChange(String(selected));
-        } else {
+    }, [selected])
+
+    useEffect(() => {
+        if (selectedDate)
             onChange(String(selectedDate));
-        }
-    }, [selectedDate, selected])
+    }, [selectedDate])
     return (
         <DatePicker
         required
