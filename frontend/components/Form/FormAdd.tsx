@@ -9,10 +9,19 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import api from '@/lib/api';
 
+const formatDate = (date: string) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // months are 0-indexed
+    const day = String(d.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+};
+
 const FormAdd = ({ addForm, setAddForm }: InterfaceFormAdd) => {
     const [employee, setEmployee] = useState('');
     const [selectedOption, setSelectedOption] = useState<OptionType | null>(null);
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(formatDate(`${new Date()}`));
     const [hoursSpent, setHoursSpent] = useState('');
     const [hourlyRate, setHourlyRate] = useState('');
     const [additionalCharges, setAdditionalCharges] = useState('0');
@@ -42,15 +51,6 @@ const FormAdd = ({ addForm, setAddForm }: InterfaceFormAdd) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
-        const formatDate = (date: string) => {
-            const d = new Date(date);
-            const year = d.getFullYear();
-            const month = String(d.getMonth() + 1).padStart(2, '0'); // months are 0-indexed
-            const day = String(d.getDate()).padStart(2, '0');
-
-            return `${year}-${month}-${day}`;
-        };
 
         api.post<Task[]>('/tasks', { 
             employee_name: employee,
