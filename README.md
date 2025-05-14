@@ -59,6 +59,7 @@ graph TD
 Download repository
 
 Navigate to the frontend directory and install the necessary dependencies using npm
+
 `cd frontend`
 
 `npm i`
