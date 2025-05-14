@@ -108,7 +108,7 @@ Download repository
 `php artisan migrate`
 
 
-## Load Data Dummy (tasks.sql) (jika dibutuhkan) ke dalam table yang baru saja di migrate
+### Load Data Dummy (tasks.sql) (jika dibutuhkan) ke dalam table yang baru saja di migrate
 
 6. jalankan backend secara lokal
 
