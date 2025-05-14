@@ -56,6 +56,20 @@ graph TD
 
 ## Setup & Deploy
 
+### Requirements
+
+PHP:
+   - PHP 8.2.12
+
+Laravel:
+   - Laravel Framework 12.13.0
+
+Node:
+   - v22.12.0
+
+NextJS:
+   - Next.js v15.3.2
+
 Download repository
 
 Navigate to the frontend directory and install the necessary dependencies using npm
