@@ -80,7 +80,7 @@ const FormAdd = ({ addForm, setAddForm }: InterfaceFormAdd) => {
                 <div className='mt-5'>
                     <CreatableSelect selectedOption={selectedOption} setSelectedOption={setSelectedOption} options={options} />
                 </div>
-                {selectedOption ? ( selectedOption?.value.split('|')[1]) ? <InputDate onChange={setDate} selected={new Date(selectedOption?.value.split('|')[1])} disabled /> : <InputDate onChange={setDate} /> : <InputDate onChange={setDate} />}
+                <InputDate onChange={setDate} selected={new Date(date)} />
                 <InputNumber required onChange={setHoursSpent} name='hours_spent' placeholder='Hours Spent *' />
                 <InputNumber required onChange={setHourlyRate} name='hourly_rate' placeholder='Hourly Rate *' />
                 <InputNumber onChange={setAdditionalCharges} name='additional_charges' placeholder='Additional Charges' />
