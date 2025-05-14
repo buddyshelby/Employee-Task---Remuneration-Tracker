@@ -12,7 +12,6 @@ class TaskController extends Controller
      */
     public function index()
     {
-        // Mengambil semua tasks data dari model Task
         $grouped = Task::all();
         return response()->json($grouped);
     }
@@ -66,6 +65,8 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return response()->json(['message' => 'Task deleted successfully'], 200);
     }
 }

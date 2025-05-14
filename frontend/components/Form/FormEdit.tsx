@@ -63,6 +63,7 @@ const FormEdit = ({ dataEdit, setDataEdit, editForm, setEditForm }: InterfaceFor
         .then(res => {
             if (res.status === 200) {
                 setDataEdit(null)
+                setEditForm(false)
                 window.location.href = '/';
             }
         })

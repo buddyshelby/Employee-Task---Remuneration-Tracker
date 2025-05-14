@@ -4,7 +4,7 @@ import TableCell from './TableCell';
 import TableHeader from './TableHeader';
 import { InterfaceTable } from '@/types';
 
-export default function Table( { tasks, setDataEdit, setEditForm }: InterfaceTable ) {
+export default function Table( { tasks, setDataEdit, setEditForm, setDeleteForm, setDataDelete }: InterfaceTable ) {
   const [total, setTotal] = useState(Object);
 
   useEffect(() => {
@@ -26,6 +26,11 @@ export default function Table( { tasks, setDataEdit, setEditForm }: InterfaceTab
   const editHandler = (taskId: number) => {
     setEditForm(true)
     setDataEdit(tasks.filter(item => item.task_id === taskId)[0])
+  }
+  
+  const deleteHandler = (taskId: number) => {
+    setDeleteForm(true)
+    setDataDelete(tasks.filter(item => item.task_id === taskId)[0])
   }
 
   return (
@@ -53,7 +58,7 @@ export default function Table( { tasks, setDataEdit, setEditForm }: InterfaceTab
                         <span className="material-symbols-outlined cursor-pointer hover:text-gray-500 transition-all duration-500" onClick={() => editHandler(task.task_id)}>
                             edit
                         </span>
-                        <span className="material-symbols-outlined cursor-pointer hover:text-gray-500 transition-all duration-500">
+                        <span className="material-symbols-outlined cursor-pointer hover:text-gray-500 transition-all duration-500" onClick={() => deleteHandler(task.task_id)}>
                             delete
                         </span>
                     </TableCell>

@@ -3,25 +3,33 @@ import Table from "@/components/Table/Table"
 import api from '@/lib/api';
 import FormAdd from "@/components/Form/FormAdd";
 import FormEdit from "@/components/Form/FormEdit";
+import ModalDelete from "@/components/Form/ModalDelete";
+import SearchBar from "@/components/Search/SearchBar";
 import { useEffect, useState } from "react";
 import { Task } from '@/types';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [modifiedDataTasks, setModifiedDataTask] = useState<Task[]>([])
   const [addForm, setAddForm] = useState(false)
   const [editForm, setEditForm] = useState(false)
   const [dataEdit, setDataEdit] = useState<Task | null>(null)
+  const [deleteForm, setDeleteForm] = useState(false)
+  const [dataDelete, setDataDelete] = useState<Task | null>(null)
 
   useEffect(() => {
     api.get<Task[]>('/tasks')
-      .then(res => setTasks(res.data))
+      .then(res => {
+        setTasks(res.data)
+        setModifiedDataTask(res.data)
+      })
       .catch(err => console.error('Failed to fetch tasks:', err));
   }, []);
 
   useEffect(() => {
     console.log(dataEdit);
     
-  }, [dataEdit])
+  }, [modifiedDataTasks])
 
   return (
     <div className="w-screen h-screen font-[family-name:var(--font-geist-sans)]">
@@ -31,16 +39,15 @@ export default function Home() {
             <div className="text-sm lg:text-lg w-max px-6 py-1 cursor-pointer border-2 rounded-3xl transition-all duration-200 hover:bg-gray-500" onClick={() => setAddForm(true)}>
               Input Data
             </div>
-            <div>
-              <input className="border-b-2 focus:outline-none text-sm lg:text-lg" type="text" name="search" placeholder="Search Employees" autoComplete="off" />
-            </div>
+            <SearchBar tasks={tasks} setTasks={setModifiedDataTask} />
           </div>
           <div className="overflow-x-auto mb-10">
-            <Table tasks={tasks} setDataEdit={setDataEdit} setEditForm={setEditForm} />
+            <Table tasks={modifiedDataTasks} setDataEdit={setDataEdit} setEditForm={setEditForm} setDataDelete={setDataDelete} setDeleteForm={setDeleteForm} />
           </div>
         </div>
         {<FormAdd addForm={addForm} setAddForm={setAddForm} />}
         {dataEdit && <FormEdit tasks={tasks} dataEdit={dataEdit} setDataEdit={setDataEdit} editForm={editForm} setEditForm={setEditForm} />}
+        {dataDelete && <ModalDelete dataDelete={dataDelete} setDataDelete={setDataDelete} setDeleteForm={setDeleteForm} deleteForm={deleteForm} />}
       </main>
     </div>
   );

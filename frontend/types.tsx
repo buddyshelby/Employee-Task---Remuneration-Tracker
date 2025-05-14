@@ -59,6 +59,8 @@ export interface InterfaceTable {
   tasks: Task[];
   setDataEdit: Dispatch<SetStateAction<Task | null>>;
   setEditForm: Dispatch<SetStateAction<boolean>>;
+  setDeleteForm: Dispatch<SetStateAction<boolean>>;
+  setDataDelete: Dispatch<SetStateAction<Task | null>>;
 }
 
 export interface InterfaceFormAdd {
@@ -67,9 +69,21 @@ export interface InterfaceFormAdd {
 }
 
 export interface InterfaceFormEdit {
-  tasks: Task[]
-  dataEdit: Task
+  tasks: Task[];
+  dataEdit: Task;
   setDataEdit: Dispatch<SetStateAction<Task | null>>;
   editForm: boolean;
   setEditForm: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface InterfaceFormDelete {
+  dataDelete: Task;
+  setDataDelete: Dispatch<SetStateAction<Task | null>>;
+  deleteForm: boolean;
+  setDeleteForm: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface InterfaceSearchBar {
+  tasks: Task[];
+  setTasks: Dispatch<SetStateAction<Task[]>>;
 }

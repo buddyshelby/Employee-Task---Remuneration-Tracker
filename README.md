@@ -1,56 +1,67 @@
-# Employee Task & Remuneration Tracker
+# Record Tugas & Remunerasi Pegawai
 
-This application allows employees to record their completed tasks and automatically calculates their remuneration based on the hours worked, hourly rate, and any additional charges.
+Aplikasi ini memungkinkan pegawai untuk mencatat tugas yang telah diselesaikan dan secara otomatis menghitung remunerasi mereka berdasarkan jam kerja, tarif per jam, dan biaya tambahan.
 
 ---
 
-## Architecture Overview
+## Arsitektur Solusi
 
-### System Components
+### Komponen Sistem
 
 1. **Frontend (Next.js)**
-   - React-based UI with pages for:
-     - Task listing
-     - Task creation/editing
-     - Remuneration calculation preview
-   - State management (Context API/Redux)
-   - Axios for API communication
+   - UI berbasis React dengan halaman untuk:
+     - Melihat Daftar Karyawan
+     - Input Data Karyawan
+     - Perhitungan remunerasi
+   - Axios untuk komunikasi API
 
 2. **Backend (Laravel)**
-   - RESTful API endpoints
-   - Eloquent ORM for database operations
-   - Prorated remuneration calculator
-   - Request validation
+   - Endpoint API RESTful
+   - Eloquent ORM untuk operasi database
+   - Validasi request
 
 3. **Database**
    - MySQL
    - Tables:
      - `tasks`
 
-### Detailed Data Flow
+### Alur Data Secara Detail
 
 ```mermaid
 graph TD
     A[API Request] --> B[Validate Data]
-    B --> C[Calculate Remuneration]
-    C --> D[Database Operation]
-    D --> E[JSON Response]
+    B --> D[Database Operation]
+    C --> E[JSON Response]
+    D --> C[Calculate Remuneration]
 ```
 
 1. **API Request**  
-   Next.js sends HTTP request to Laravel
+   Next.js mengirimkan permintaan HTTP ke Laravel
 
 2. **Validate Data**  
-   Laravel checks input format and values
+   Laravel memeriksa format dan nilai input
 
-3. **Calculate Remuneration**  
-   Prorated calculation happens here
+3. **Database Operation**  
+   Data disimpan/diperbarui
 
-4. **Database Operation**  
-   Records are saved/updated
+4. **JSON Response**  
+   Laravel mengembalikan hasil output ke Next.js
 
-5. **JSON Response**  
-   Laravel returns results to Next.js
+5. **Menghitung remunerasi**
+   Perhitungan dilakukan dan rumusnya ditampilkan menjadi satu table
+
+---
+
+## Penjelasan Desain
+
+1. **Mengapa harus laravel?**
+   Menurut saya laravel dapat mengelola API dengan cepat, lalu untuk menyusun routing dan database yang tidak begitu rumit. Seperti contohnya laravcel memiliki fitur seperti Eloquent ORM yang memungkinkan Anda untuk berinteraksi dengan database menggunakan syntax PHP bukan menggunakan query SQL secara langsung 
+
+2. **Mengapa menggunakan NextJS?**
+   Untuk Next.js sendiri sangat cocok untuk aplikasi yang memerlukan performa tinggi, misalnya dengan server-side rendering (SSR) atau static site generation (SSG) yang bisa mempercepat waktu load aplikasi. Fitur API Routes di Next.js juga memudahkan Anda dalam membuat komunikasi antara frontend dan backend tanpa membutuhkan framework tambahan. Dan mengapa saya melakukan perhitungan remunerasi dibagian depan karna mempermudah dalam pembuatan aplikasi ini, menurut saya tidak perlu terlalu secure karna untuk data rawnya sudah secure di bagian belakang, dan untuk mengimplementasikannya jadi lebih mudah karna tidak perlu susah payah mengelola dibagian belakang dan nantinya akan diolah lagi dibagian depan.
+
+3. **Perhitungan remunerasi menggunakan sistem prorata**
+   Untuk perhitungan remunerasi ini sendiri saya masih awam, jujur saya beberapa kali searching untuk hal ini dan yang mungkin saya pahami adalah sistem prorata ini saja, yaitu untuk memastikan remunerasi dibagi berdasakan kontribusi masing masing pegawai. Pendekatan tersebut adalah pendekatan yang cukup adil dan transparant untuk yang lainnya, apalagi dengan melibatkan lebih dari satu pegawai dalam satu pekerjaan yang sama
 
 ---
 
@@ -72,35 +83,41 @@ NextJS:
 
 Download repository
 
-Navigate to the frontend directory and install the necessary dependencies using npm
+Buka frontend directory dan install depedensi yang dibutuhkan menggunakan npm
 
 `cd frontend`
 
 `npm i`
 
 
-Navigate to the backend (Laravel) directory and install the necessary PHP dependencies using composer
+Buka backend directory dan install depedensi PHP yang dibutuhkan menggunakan composer
 
 `cd ../backend`
 
 `composer install`
 
 
-Generate a new application encryption key for Laravel. This will set the APP_KEY in your .env file
+Generate APP_KEY untuk aplikasi baru Laravel. ini akan setup env file juga nantinya.
 
 `artisan key:generate`
 
 
-Migrate the database to create the necessary tables. Make sure the database connection is properly set up in your .env file before running this.
+Migrasi databasenya untuk membuat table yang diperlukan.
 
 `php artisan migrate`
 
 
-Start frontend locally
+jalankan frontend secara lokal
 
 `npm run dev`
 
 
-Start backend local
+jalankan backend secara lokal
 
 `php artisan serve`
+
+
+## Tantangan dan solusi
+
+Saya merasa satu satunya tantangan adalah mengerjakannya dalam 3 hari, menurut saya itu adalah waktu yang cukup singkat. Walaupun sebenernya saya kurang yakin, namun begitu dikerjakan dalam kurun waktu kurang dari 3 hari dengan me-manage waktu dengan pekerjaan saya yang sekarang alhamdulillah saya dapat menyelesaikannya dengan hasil yang cukup memuaskan.
+Untuk solusinya cukup bagaimana saya me-manage waktu dengan sebaik baiknya. Karna coding adalah hobi saya dan saya sangat tertarik dengan dunia web development. Semoga dengan challenge ini saya dapat berkontribusi dan diterima dalam perusahaan ibu/bapak. Terima kasih.
